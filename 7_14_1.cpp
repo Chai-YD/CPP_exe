@@ -81,7 +81,24 @@
 //}
 
 
+//分数转换函数
+#include<iostream>
+using namespace std;
 
+int main(){
+    int count;
+    cout<<"输入成绩：";
+    cin>>count;
+    switch(count){
+        case 0:
+            cout<<"A";
+            break;
+        default:
+            cout<<"B";
+            break;
+    }
+    return 0;
+}
 
 
 
