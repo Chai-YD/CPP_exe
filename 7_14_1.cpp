@@ -82,26 +82,58 @@
 
 
 //分数转换函数
+//#include<iostream>
+//using namespace std;
+//
+//int main(){
+//    int count;
+//    cout<<"输入成绩：";
+//    cin>>count;
+//    switch(count){
+//        case 0:
+//            cout<<"A";
+//            break;
+//        default:
+//            cout<<"B";
+//            break;
+//    }
+//    return 0;
+//}
+
+
+//自动出题程序
 #include<iostream>
+#include<stdlib.h>
 using namespace std;
 
 int main(){
-    int count;
-    cout<<"输入成绩：";
-    cin>>count;
-    switch(count){
+    int num1,num2,op,result;
+    srand(time(NULL));
+    num1 = rand()%10;
+    num2 = rand()%10;
+    op = rand()%2;
+    switch(op){
         case 0:
-            cout<<"A";
+            cout<<num1<<"+"<<num2<<"=?";
+            cin>>result;
+            if(num1+num2 == result){
+                cout<<"you are right"<<endl;
+            }else{
+                cout<<"you are wrong"<<endl;
+            }
             break;
         default:
-            cout<<"B";
+            cout<<num1<<"+"<<num2<<"=?";
+            cin>>result;
+            if(num1-num2 == result){
+                cout<<"you are right"<<endl;
+            }else{
+                cout<<"you are wrong"<<endl;
+            }
             break;
     }
     return 0;
 }
-
-
-
 
 
 
