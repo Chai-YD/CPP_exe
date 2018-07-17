@@ -393,44 +393,140 @@
 //    return 0;
 //}
 
-#include<iostream>
-using namespace std;
-
-class Student{
-    string _name;
-    int _age;
-public:
-    Student():_name(""),_age(0){};
-    void set_name(string name){
-        _name = name;
-    }
-    void set_age(int age){
-        _age = age;
-    }
-    int get_age(){
-        return _age;
-    }
-    string get_name(){
-        return _name;
-    }
-};
-//由于此处使用的是值传递，所以所得结果并不改变本身的值
-void increment_age(Student s){
-    s.set_age(s.get_age()+1);
-    cout<<s.get_age()<<endl;
-}
-
-//主函数
-int main(){
-    Student s;
-    s.set_name("zhangsan");
-    s.set_age(20);
-    increment_age(s);
-    cout<<s.get_age()<<endl;
-    return 0;
-}
+//#include<iostream>
+//using namespace std;
+//
+//class Student{
+//    string _name;
+//    int _age;
+//public:
+//    Student():_name(""),_age(0){};
+//    void set_name(string name){
+//        _name = name;
+//    }
+//    void set_age(int age){
+//        _age = age;
+//    }
+//    int get_age(){
+//        return _age;
+//    }
+//    string get_name(){
+//        return _name;
+//    }
+//};
+////由于此处使用的是值传递，所以所得结果并不改变本身的值
+//void increment_age(Student s){
+//    s.set_age(s.get_age()+1);
+//    cout<<s.get_age()<<endl;
+//}
+//
+////主函数
+//int main(){
+//    Student s;
+//    s.set_name("zhangsan");
+//    s.set_age(20);
+//    increment_age(s);
+//    cout<<s.get_age()<<endl;
+//    return 0;
+//}
 
 //输出结果为21，20
 //结果分析：堆age进行+1处理时，所使用的是值传递，所以
 //并不对本身的值进行改变
 //如果想要对本身的值进行改变，此处应该进行传址操作
+
+
+
+//#include<iostream>
+//using namespace std;
+//
+//class Time{
+//    //构造函数
+//public:
+//    Time(const Time& t){      //赋值运算符
+//        cout<<"const Time& t"<<endl;
+//        _hour = t._hour;
+//        _minute  = t._minute;
+//        _second = t._second;
+//    }
+//private:
+//    int _hour;
+//    int _minute;
+//    int _second;
+//};
+//class Date{
+//public:
+//    Date(int year,int month,int day,const Time& t):_testCount(1),
+//    {
+//        cout<<"Date()"<<endl;
+//    _year = year;
+//    _month = month;
+//    _day = day;
+//    _t  = t;
+//    }
+//private:
+//    int _year;
+//    int _month;
+//    int _day;
+//    const int  _testCount;  //测试const成员变量的初始化
+//    //int& _testReference;    //测试 引用成员变量的初始化
+//    Time _t;                //测试无缺省构造函数的成员变量的初始化
+//};
+//void Test(){
+//    Time t1(12,10,10);
+//    Date d1(1996,5,20,t1);
+//}
+//
+//int main(){
+//    Test();
+//    return 0;
+//}
+
+
+
+//#include<iostream>
+//using namespace std;
+//
+////类的创建
+//class Date{
+//public:
+//    Date(int x)
+//    :_day(x),
+//    _month(_day),
+//    _year(x)
+//    {
+//        //构造函数
+//        cout<<"Date()"<<endl;
+//    }
+//    void Display(){
+//        cout<<"year"<<_year<<endl;
+//        cout<<"_month"<<_month<<endl;
+//        cout<<"day"<<_day<<endl;
+//    }
+//private:
+//    int _year;
+//    int _month;
+//    int _day;
+//};//类的定义失败
+//void Test(){
+//    Date d1(1);
+//    d1.Display();
+//}
+//int main(){
+//    Test();
+//    return 0;
+//}
+//根据所得结果可得：
+//  成员变量按声明顺序依次初始化，而非初始化列表的顺序
+
+
+
+
+
+
+
+
+
+
+
+
