@@ -520,83 +520,179 @@
 //  成员变量按声明顺序依次初始化，而非初始化列表的顺序
 
 
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//
+//class person{
+//public:
+//    //构造函数
+//    person(char* name):_name(name)
+//    {
+//        cout<<"person()"<<endl;
+//    }
+//    //拷贝构造函数
+//    person(const person& p):_name(p._name)
+//    {
+//        cout<<"person(const person& p)"<<endl;
+//    }
+//    //赋值运算符重载
+//    person& operator=(const person& p){
+//        cout<<"person& operator=(const person& p)"<<endl;
+//        if(this != &p){
+//            _name = p._name;
+//        }
+//        return *this;
+//    }
+//    //析构函数
+//    ~person(){
+//        cout<<"~person()"<<endl;
+//    }
+//protected: //继承后父类中私有成员将会变成不可见成员，
+//            //故当类如果会被进程时，一般的情况下，应该
+//            //将其成员变量设置为受保护的
+//    string _name;
+//};//类结束后一定应该使用分号，表示结束
+//
+//class student:public person{
+//public:
+//    //构造函数
+//    student(char* name,int num):person(name),_num(num){
+//        cout<<"student(char* name,int num)"<<endl;
+//    }
+//    //拷贝构造函数
+//    student(const student& s):person(s),_num(s._num){
+//        cout<<"student(const student& s)"<<endl;
+//    }
+//    //赋值运算符重载
+//    student& operator=(const student& s){
+//        cout<<"student& operator=(const student& s)"<<endl;
+//        if(this != &s){
+//            person::operator=(s);
+//            _num = s._num;
+//        }
+//        return *this;
+//    }
+//    //析构函数
+//    ~student(){
+//        cout<<"~student()"<<endl;
+//    }
+//private:
+//    int _num;
+//};
+//
+//void Test(){
+//    student p("zhang",21);
+//    student q(p);
+//    student r("li" ,23);
+//    r = q;
+//}
+//
+//int main(){
+//    Test();
+//    return 0;
+//}
+
+//单继承：一个子类只有一个父类时称这个继承为单继承
+//多继承：一个子类有两个或两个以上父类时称这个继承为多继承
+
+
+/*************************************
+ * 菱形继承
+ * **********************************/
+
+//菱形继承会存在数据冗余和二义性的问题
+//此处，Assistant对象中就含有两份person成员
+//#include<iostream>
+//#include<string>
+//using  namespace std;
+//
+//class person{
+//public:
+//    string _name;
+//};
+//class student:public person{
+//protected:
+//    int _num;
+//};
+//class teacher:public person{
+//protected:
+//    int _id;
+//};
+//class Assistant:public student,public teacher{
+//    string _majorCourse;
+//};//类的结束后必须以分号结束
+//
+//int main(){
+//    Assistant a;
+//    //显示访问
+//    a.student::_name = "xxx";
+//    a.teacher::_name = "yyy";
+//    return 0;
+//}
+
+/***************************
+ * 虚继承 
+ * ************************/
+//在vs中，解决菱形继承使用的是偏移量
+
+
+/**************************
+ * 虚函数
+ * ***********************/
+//虚函数-类的成员函数前面加virtual关键字，则这个成员函数就称为虚函数
+//虚函数重写-当在子类中定义了一个与父类完全相同的虚函数时，则称子类的
+//           这个函数重写（也称覆盖）了父类的这个函数
+
+//【多态】当使用基类的指针或引用调用重写的虚函数时，当指向父类调用的
+//        就是父类的虚函数，当指向子类调用的就是子类的虚函数
+
+
+/******************************************
+ * 总结
+ * ***************************************/
+//1.派生类重写基类的虚函数实现多态，要求函数名、参数列表、返回值完全相同。（协变除外）
+//2.在基类中定义了虚函数，在派生类中该函数始终保持虚函数的特性
+//3.只有类的成员才能定义为虚函数
+//4.静态成员函数不能定义为虚函数
+//5.如果在类外定义虚函数，只能在声明函数时加virtual，类外定义函数时不能加virtual
+//6.构造函数不能为虚函数，虽然可以将operator=定义为虚函数，但是最好不要将其定义为
+//  虚函数，因为使用时容易引起混淆
+//7.不要在构造函数和析构函数里面调用虚函数，在构造函数和析构函数中，对象是不完整的，
+//  可能会发生未定义的行为
+//8.最好把基类的析构函数定义为虚函数。（why？另外析构函数比较特殊，因为派生类的析构函数
+//  和基类的析构函数名称不一样，但是构成覆盖，这里是编译器做了特殊处理）
+
 #include<iostream>
-#include<string>
 using namespace std;
 
 class person{
 public:
-    //构造函数
-    person(char* name):_name(name)
-    {
-        cout<<"person()"<<endl;
+    virtual void buyticket(){
+        cout<<"person::buyticket->全价"<<endl;
     }
-    //拷贝构造函数
-    person(const person& p):_name(p._name)
-    {
-        cout<<"person(const person& p)"<<endl;
-    }
-    //赋值运算符重载
-    person& operator=(const person& p){
-        cout<<"person& operator=(const person& p)"<<endl;
-        if(this != &p){
-            _name = p._name;
-        }
-        return *this;
-    }
-    //析构函数
-    ~person(){
-        cout<<"~person()"<<endl;
-    }
-protected: //继承后父类中私有成员将会变成不可见成员，
-            //故当类如果会被进程时，一般的情况下，应该
-            //将其成员变量设置为受保护的
-    string _name;
-};//类结束后一定应该使用分号，表示结束
-
+};
 class student:public person{
 public:
-    //构造函数
-    student(char* name,int num):person(name),_num(num){
-        cout<<"student(char* name,int num)"<<endl;
+    virtual void buyticket(){
+        cout<<"student::buyticket->半价"<<endl;
     }
-    //拷贝构造函数
-    student(const student& s):person(s),_num(s._num){
-        cout<<"student(const student& s)"<<endl;
-    }
-    //赋值运算符重载
-    student& operator=(const student& s){
-        cout<<"student& operator=(const student& s)"<<endl;
-        if(this != &s){
-            person::operator=(s);
-            _num = s._num;
-        }
-        return *this;
-    }
-    //析构函数
-    ~student(){
-        cout<<"~student()"<<endl;
-    }
-private:
-    int _num;
 };
-
-void Test(){
-    student p("zhang",21);
-    student q(p);
-    student r("li" ,23);
-    r = q;
+void FUN(person& p){
+    p.buyticket();
 }
 
 int main(){
-    Test();
+    person p;
+    student s;
+    FUN(p);
+    FUN(s);
+    person* q = &p;
+    q->buyticket();
+    q = &s;
+    q->buyticket();
     return 0;
 }
-
-
-
-
-
 
 
 
