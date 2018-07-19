@@ -520,7 +520,78 @@
 //  成员变量按声明顺序依次初始化，而非初始化列表的顺序
 
 
+#include<iostream>
+#include<string>
+using namespace std;
 
+class person{
+public:
+    //构造函数
+    person(char* name):_name(name)
+    {
+        cout<<"person()"<<endl;
+    }
+    //拷贝构造函数
+    person(const person& p):_name(p._name)
+    {
+        cout<<"person(const person& p)"<<endl;
+    }
+    //赋值运算符重载
+    person& operator=(const person& p){
+        cout<<"person& operator=(const person& p)"<<endl;
+        if(this != &p){
+            _name = p._name;
+        }
+        return *this;
+    }
+    //析构函数
+    ~person(){
+        cout<<"~person()"<<endl;
+    }
+protected: //继承后父类中私有成员将会变成不可见成员，
+            //故当类如果会被进程时，一般的情况下，应该
+            //将其成员变量设置为受保护的
+    string _name;
+};//类结束后一定应该使用分号，表示结束
+
+class student:public person{
+public:
+    //构造函数
+    student(char* name,int num):person(name),_num(num){
+        cout<<"student(char* name,int num)"<<endl;
+    }
+    //拷贝构造函数
+    student(const student& s):person(s),_num(s._num){
+        cout<<"student(const student& s)"<<endl;
+    }
+    //赋值运算符重载
+    student& operator=(const student& s){
+        cout<<"student& operator=(const student& s)"<<endl;
+        if(this != &s){
+            person::operator=(s);
+            _num = s._num;
+        }
+        return *this;
+    }
+    //析构函数
+    ~student(){
+        cout<<"~student()"<<endl;
+    }
+private:
+    int _num;
+};
+
+void Test(){
+    student p("zhang",21);
+    student q(p);
+    student r("li" ,23);
+    r = q;
+}
+
+int main(){
+    Test();
+    return 0;
+}
 
 
 
