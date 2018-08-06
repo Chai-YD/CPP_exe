@@ -58,63 +58,64 @@
  * 探究多继承对象模型
  * *************************************/
 
-//#include<iostream>
-//#include<stdio.h>
-//using namespace std;
-//
-//class Base1{
-//public:
-//    virtual void func1(){
-//        cout<<"Base1::func1"<<endl;
-//    }
-//    virtual void func2(){
-//        cout<<"Base1::func2"<<endl;
-//    }
-//private:
-//    int a;
-//};
-//
-//class Base2{
-//public:
-//    virtual void func1(){
-//        cout<<"Base2::func1"<<endl;
-//    }
-//    virtual void func2(){
-//        cout<<"Base2::func2"<<endl;
-//    }
-//private:
-//    int b;
-//};
-//
-//class Derive :public Base1,public Base2{
-//public:
-//    virtual void func1(){
-//        cout<<"Derive::func1"<<endl;
-//    }
-//    virtual void func3(){
-//        cout<<"Derive::func3"<<endl;
-//    }
-//private:
-//    int c;
-//};
-//
-//typedef void (*FUNC) ();
-//void PrintTable(int* VTable){
-//    int i = 0;
-//    for(;0 != VTable[i];i++){
-//        printf("%d->%p ",i,VTable[i]);
-//        FUNC f = (FUNC)VTable[i];
-//        f();
-//        cout<<endl;
-//    }
-//}
-//
-//int  main(){
-//    Base1 b1;
-//    int *VTable1 = (int*)(*((int *)&b1));
-//    cout<<sizeof(b1)<<endl;
-//    PrintTable(VTable1);
-//}
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+
+class Base1{
+public:
+    virtual void func1(){
+        cout<<"Base1::func1"<<endl;
+    }
+    virtual void func2(){
+        cout<<"Base1::func2"<<endl;
+    }
+private:
+    int a;
+};
+
+class Base2{
+public:
+    virtual void func1(){
+        cout<<"Base2::func1"<<endl;
+    }
+    virtual void func2(){
+        cout<<"Base2::func2"<<endl;
+    }
+private:
+    int b;
+};
+
+class Derive :public Base1,public Base2{
+public:
+    virtual void func1(){
+        cout<<"Derive::func1"<<endl;
+    }
+    virtual void func3(){
+        cout<<"Derive::func3"<<endl;
+    }
+private:
+    int c;
+};
+
+typedef void (*FUNC) ();
+void PrintTable(int* VTable){
+    int i = 0;
+    for(;0 != VTable[i];i++){
+        printf("%d->%p ",i,VTable[i]);
+        FUNC f = (FUNC)VTable[i];
+        f();
+        cout<<endl;
+    }
+}
+
+int  main(){
+    //Base1 b1;
+    Derive d1;
+    int *VTable1 = (int*)(*((int *)&d1));
+    cout<<sizeof(d1)<<endl;
+    PrintTable(VTable1);
+}
 
 
 /*****************************************
