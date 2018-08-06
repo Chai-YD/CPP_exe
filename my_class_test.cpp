@@ -663,36 +663,36 @@
 //8.最好把基类的析构函数定义为虚函数。（why？另外析构函数比较特殊，因为派生类的析构函数
 //  和基类的析构函数名称不一样，但是构成覆盖，这里是编译器做了特殊处理）
 
-#include<iostream>
-using namespace std;
-
-class person{
-public:
-    virtual void buyticket(){
-        cout<<"person::buyticket->全价"<<endl;
-    }
-};
-class student:public person{
-public:
-    virtual void buyticket(){
-        cout<<"student::buyticket->半价"<<endl;
-    }
-};
-void FUN(person& p){
-    p.buyticket();
-}
-
-int main(){
-    person p;
-    student s;
-    FUN(p);
-    FUN(s);
-    person* q = &p;
-    q->buyticket();
-    q = &s;
-    q->buyticket();
-    return 0;
-}
+//#include<iostream>
+//using namespace std;
+//
+//class person{
+//public:
+//    virtual void buyticket(){
+//        cout<<"person::buyticket->全价"<<endl;
+//    }
+//};
+//class student:public person{
+//public:
+//    virtual void buyticket(){
+//        cout<<"student::buyticket->半价"<<endl;
+//    }
+//};
+//void FUN(person& p){
+//    p.buyticket();
+//}
+//
+//int main(){
+//    person p;
+//    student s;
+//    FUN(p);
+//    FUN(s);
+//    person* q = &p;
+//    q->buyticket();
+//    q = &s;
+//    q->buyticket();
+//    return 0;
+//}
 
 
 
