@@ -115,17 +115,51 @@
 // }
 
 
-//通过read函数进行无格式的输入
-#include<iostream>
-using namespace std;
-int main(){
-    char buf[80];
-    cin.read(buf,20);
+// //通过read函数进行无格式的输入
+// #include<iostream>
+// using namespace std;
+// int main(){
+//     char buf[80];
+//     cin.read(buf,20);
+// 
+//     cout.write(buf,cin.gcount());
+//     cout<<endl;
+//     cout<<"总数："<<cin.gcount()<<endl;
+//     return 0;
+// }
 
-    cout.write(buf,cin.gcount());
-    cout<<endl;
-    cout<<"总数："<<cin.gcount()<<endl;
+
+//文件的顺序读写
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+int main(){
+    ofstream out("file");
+    ifstream in;
+    int  i;
+    if(!out){
+        cerr<<"create file error\n";
+        return 1;
+    }
+    for(i = 1;i<= 10;++i){
+        out<<i<<' ';
+    }
+    out.close();
+    in.open("file");
+    if(!in){
+        cerr<<"open file error\n";
+        return 1;
+    }
+    while(in>>i){
+        cout<<i<<' ';
+    }
     return 0;
 }
+
+
+
+
+
 
 
