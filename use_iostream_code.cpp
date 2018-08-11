@@ -129,36 +129,55 @@
 // }
 
 
-//文件的顺序读写
-#include<iostream>
-#include<fstream>
-using namespace std;
+// //文件的顺序读写
+// #include<iostream>
+// #include<fstream>
+// using namespace std;
+// 
+// int main(){
+//     ofstream out("file");
+//     ifstream in;
+//     int  i;
+//     if(!out){
+//         cerr<<"create file error\n";
+//         return 1;
+//     }
+//     for(i = 1;i<= 10;++i){
+//         out<<i<<' ';
+//     }
+//     out.close();
+//     in.open("file");
+//     if(!in){
+//         cerr<<"open file error\n";
+//         return 1;
+//     }
+//     while(in>>i){
+//         cout<<i<<' ';
+//     }
+//     return 0;
+// }
 
-int main(){
-    ofstream out("file");
-    ifstream in;
-    int  i;
-    if(!out){
-        cerr<<"create file error\n";
-        return 1;
-    }
-    for(i = 1;i<= 10;++i){
-        out<<i<<' ';
-    }
-    out.close();
-    in.open("file");
-    if(!in){
-        cerr<<"open file error\n";
-        return 1;
-    }
-    while(in>>i){
-        cout<<i<<' ';
-    }
-    return 0;
-}
 
-
-
+// #include<iostream>
+// #include<fstream>
+// using namespace std;
+// 
+// int main(){
+//     fstream in("file");
+//     int i;
+//     if(!in){
+//         cerr<<"open file error\n";
+//         return 1;
+//     }
+//     in.seekp(10);//重新定位写文件指针
+//     in<<20;
+//     in.seekg(0);//读文件指针移到文件起始位置
+//     while(in>>i){
+//         cout<<i<< ' ';
+//     }
+//     in.close();
+//     return 0;
+// }
 
 
 
