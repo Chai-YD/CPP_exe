@@ -1,0 +1,5 @@
+1.STL算法中的next_permutation算法是的用法？
+    如果序列已经是最后一个排列，则next_permutation将序列重排为最小的序列，并返回false。否则，将它输入序列转化为字典序中下一个排列，并返回True。
+2.STL算法中partition算法的用法？
+    对指定范围内的元素重新排序，使用输入的函数，把结果为True的元素放在结果为false的元素前面。stable_partition版本保留原使容器中的相对顺序。如使数组中奇数位于偶数前面。
+
